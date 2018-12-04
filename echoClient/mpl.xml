@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="http://schemas.microsoft.com/build/2009/properties"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Rule
+    Name="MPL"
+    PageTemplate="tool"
+    DisplayName="MPL"
+    Order="200">
+    <Rule.DataSource>
+      <DataSource Persistence="ProjectFile"
+                  ItemType="MPL"/>
+    </Rule.DataSource>
+    <StringProperty Category="General"
+                    Description="Path to MPL compiler"
+                    DisplayName="Compiler path"
+                    IncludeInCommandLine="false"
+                    IsRequired="true"
+                    Name="CompilerPath"
+                    Subtype="file"/>
+    <StringProperty Category="General"
+                    Description="MPL compiler options"
+                    DisplayName="Compiler options"
+                    IncludeInCommandLine="false"
+                    IsRequired="true"
+                    Name="CompilerOptions"
+                    Subtype="AdditionalOptions"/>
+    <StringProperty Category="General"
+                    Description="MPL output file path. -o [value]"
+                    DisplayName="Compiler output file"
+                    IncludeInCommandLine="false"
+                    IsRequired="true"
+                    Name="CompilerOutput"/>
+  </Rule>
+  <ItemType
+    Name="MPL"
+    DisplayName="MPL"/>
+  <FileExtension
+    Name="*.mpl"
+    ContentType="MPL"/>
+  <ContentType
+    Name="MPL"
+    DisplayName="MPL"
+    ItemType="MPL"/>
+</ProjectSchemaDefinitions>

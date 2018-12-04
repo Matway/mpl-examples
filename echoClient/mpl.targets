@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml"/>
+  </ItemGroup>
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      MPLClean
+    </CleanDependsOn>
+  </PropertyGroup>
+  <Target Name="MPLAll"
+          Condition="'@(MPL)'!=''"
+          AfterTargets="CustomBuild"
+          BeforeTargets="LLVMCompile"
+          Inputs="@(MPL)"
+          Outputs="%(MPL.CompilerOutput)">
+    <Message Importance="high"
+             Text="Compiling MPL, %(MPL.CompilerOutput)..."/>
+    <Exec Command="%(MPL.CompilerPath) -o %(MPL.CompilerOutput) %(MPL.CompilerOptions) @(MPL, ' ')"/>
+    <ItemGroup>
+      <LLVM Include="%(MPL.CompilerOutput)"/>
+    </ItemGroup>
+  </Target>
+  <Target Name="MPLClean">
+    <Delete Files="%(MPL.CompilerOutput)"/>
+  </Target>
+  <ItemGroup Condition="'@(MPL)'!=''">
+    <ProjectTools Include="LLVM"/>
+  </ItemGroup>
+</Project>

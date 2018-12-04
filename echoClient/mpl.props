@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <MPL>
+      <CompilerPath>%USERPROFILE%\mpl\mplc.exe</CompilerPath>
+      <CompilerOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">-32bits -linker_option /DEFAULTLIB:legacy_stdio_definitions.lib -linker_option /DEFAULTLIB:msvcrtd.lib</CompilerOptions>
+      <CompilerOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">-64bits -linker_option /DEFAULTLIB:legacy_stdio_definitions.lib -linker_option /DEFAULTLIB:msvcrtd.lib</CompilerOptions>
+      <CompilerOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">-32bits -linker_option /DEFAULTLIB:legacy_stdio_definitions.lib -linker_option /DEFAULTLIB:msvcrt.lib -ndebug</CompilerOptions>
+      <CompilerOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">-64bits -linker_option /DEFAULTLIB:legacy_stdio_definitions.lib -linker_option /DEFAULTLIB:msvcrt.lib -ndebug</CompilerOptions>
+      <CompilerOutput>$(IntDir)mpl.ll</CompilerOutput>
+    </MPL>
+  </ItemDefinitionGroup>
+</Project>

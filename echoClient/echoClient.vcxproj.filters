@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sl">
+      <UniqueIdentifier>{c4483f73-15d3-436d-af32-5a20577bcbd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sl\windows">
+      <UniqueIdentifier>{1ba7223e-3698-43d2-be6b-ee1fc9d5bdc8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <MPL Include="sl\windows\dispatcher.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\kernel32.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\kernel32Private.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\runningTime.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\TcpAcceptor.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\TcpConnection.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\Thread.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\ws2_32.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\windows\ws2_32Private.mpl">
+      <Filter>sl\windows</Filter>
+    </MPL>
+    <MPL Include="sl\Array.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\atomic.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\control.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\lockGuard.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\memory.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\Owner.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\Pool.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\Spinlock.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\String.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="sl\Union.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="Connection.mpl" />
+    <MPL Include="ConnectionManager.mpl" />
+    <MPL Include="test.mpl" />
+  </ItemGroup>
+  <ItemGroup>
+    <LLVM Include="sl\atomic.ll">
+      <Filter>sl</Filter>
+    </LLVM>
+  </ItemGroup>
+</Project>
