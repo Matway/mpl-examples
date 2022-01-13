@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml"/>
+  </ItemGroup>
+
+  <UsingTask
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" TaskFactory="CodeTaskFactory" TaskName="LlvmMultiTaskTool">
+    <ParameterGroup>
+      <Sources ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true"/>
+      <ToolExe Required="false"/>
+      <TrackerLogDirectory Required="false"/>
+    </ParameterGroup>
+    <Task>
+      <Code Language="cs" Source="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).cs" Type="Class"/>
+      <Reference Include="$(VCTargetsPath)Microsoft.Build.CppTasks.Common.dll"/>
+    </Task>
+  </UsingTask>
+
+  <Target Name="LlvmPreCompile" AfterTargets="BuildCompile" Condition="false"/>
+
+  <Target Name="LlvmCompile" AfterTargets="LlvmPreCompile" Condition="@(LLVM) != ''">
+    <ItemGroup>
+      <!-- Remove files that are excluded from build -->
+      <LLVM Condition="%(LLVM.ExcludedFromBuild) == true" Remove="@(LLVM)"/>
+    </ItemGroup>
+
+    <!-- Compile files -->
+    <LlvmMultiTaskTool
+      Sources="@(LLVM)"
+      ToolExe="%(CompilerPath)"
+      TrackerLogDirectory="$(TLogLocation)"/>
+
+    <!-- Prepare outputs for the next stage -->
+    <ItemGroup>
+      <Link Include="%(LLVM.OutputFile)"/>
+    </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ProjectTools Include="LLVM"/>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml"/>
+  </ItemGroup>
+
+  <UsingTask
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" TaskFactory="CodeTaskFactory" TaskName="MplMultiTaskTool">
+    <ParameterGroup>
+      <Sources ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true"/>
+      <ToolExe Required="false"/>
+      <TrackerLogDirectory Required="false"/>
+    </ParameterGroup>
+    <Task>
+      <Code Language="cs" Source="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).cs" Type="Class"/>
+      <Reference Include="$(VCTargetsPath)Microsoft.Build.CppTasks.Common.dll"/>
+    </Task>
+  </UsingTask>
+
+  <UsingTask
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" TaskFactory="CodeTaskFactory" TaskName="MplCompile">
+    <ParameterGroup>
+      <InputFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true"/>
+      <TrackerLogsFolder Required="true"/>
+    </ParameterGroup>
+    <Task>
+      <Code Language="cs" Source="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).cs" Type="Class"/>
+      <Reference Include="$(VCTargetsPath)Microsoft.Build.CppTasks.Common.dll"/>
+    </Task>
+  </UsingTask>
+
+  <Target Name="MplPreCompile" BeforeTargets="LlvmPreCompile" Condition="false"/>
+
+  <Target Name="MplCompile" AfterTargets="MplPreCompile" Condition="@(MPL) != ''">
+    <ItemGroup>
+      <!-- Remove files that are excluded from build -->
+      <MPL Condition="%(MPL.ExcludedFromBuild) == true" Remove="@(MPL)"/>
+
+      <!-- Replace output file for files without partial compilation -->
+      <MPL Condition="%(MPL.PartialCompilation) != true" OutputFile="$(IntDir)mpl.ll"/>
+    </ItemGroup>
+
+    <!-- Compile files without partial compilation -->
+    <MplCompile
+      Condition="%(MPL.PartialCompilation) != true"
+      InputFiles="@(MPL)"
+      TrackerLogsFolder="$(TLogLocation)"/>
+
+    <!-- Compile files with partial compilation -->
+    <MplMultiTaskTool
+      Condition="%(MPL.PartialCompilation) == true"
+      Sources="@(MPL)"
+      ToolExe="%(CompilerPath)"
+      TrackerLogDirectory="$(TLogLocation)"/>
+
+    <!-- Prepare outputs for the next stage -->
+    <ItemGroup>
+      <LLVM Include="%(MPL.OutputFile)"/>
+    </ItemGroup>
+  </Target>
+</Project>

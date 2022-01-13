@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="http://schemas.microsoft.com/build/2009/properties"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Rule DisplayName="MPL" Name="MPL" Order="18" PageTemplate="tool" SwitchPrefix="-">
+    <Rule.Categories>
+      <Category DisplayName="General" Name="General"/>
+      <Category DisplayName="All Options" Name="All Options" Subtype="Search"/>
+      <Category DisplayName="Command Line" Name="Command Line" Subtype="CommandLine"/>
+    </Rule.Categories>
+    <Rule.DataSource>
+      <DataSource HasConfigurationCondition="true" ItemType="MPL" Persistence="ProjectFile"/>
+    </Rule.DataSource>
+    <StringProperty Category="General" Description="Path to the MPL compiler." DisplayName="Compiler Path" IncludeInCommandLine="false" IsRequired="true" Name="CompilerPath" Subtype="file"/>
+    <EnumProperty Category="General" Description="The -32bits/-64bits options specify the target pointer size." DisplayName="Pointer Size" Name="PointerSize">
+      <EnumValue DisplayName="Unspecified" Name="Unspecified"/>
+      <EnumValue DisplayName="32 bits" Name="32" Switch="32bits"/>
+      <EnumValue DisplayName="64 bits" Name="64" Switch="64bits"/>
+    </EnumProperty>
+    <StringListProperty Category="General" Description="The -D option defines a global name for the MPL program, for example -D LABEL or -D LABEL=TRUE." DisplayName="Definitions" Name="Definitions" Switch="D "/>
+    <StringListProperty Category="General" Description="The -I option specifies the folders to use when searching for include files." DisplayName="Include Folders" Name="IncludeFolders" Subtype="folder" Switch="I "/>
+    <EnumProperty Category="General" Description="The -call_trace option tells the compiler to generate the call stack information to help with debugging." DisplayName="Call Trace" Name="CallTrace">
+      <EnumValue DisplayName="None" Name="None"/>
+      <EnumValue DisplayName="Single-threaded" Name="SingleThreaded" Switch="call_trace 1"/>
+      <EnumValue DisplayName="Multi-threaded, MSVC-specific" Name="MSVC" Switch="call_trace 2"/>
+    </EnumProperty>
+    <BoolProperty Category="General" Description="The -debug_memory option tells the compiler to produce the memory usage information after compilation." DisplayName="Show Memory Usage" Name="ShowMemoryUsage" Switch="debug_memory"/>
+    <StringListProperty Category="General" Description="The -linker_option /DEFAULTLIB option specifies additional items to add to the link command line." DisplayName="Additional Dependencies" Name="AdditionalDependencies" Subtype="file" Switch="linker_option /DEFAULTLIB:"/>
+    <BoolProperty Category="General" Description="The -ndebug option disables generation of the debug information." DisplayName="Disable Debug Info" Name="DisableDebugInfo" Switch="ndebug"/>
+    <StringProperty Category="General" Description="The -o option specifies the name of the .ll file that the compiler creates." DisplayName="Output File" IsRequired="true" Name="OutputFile" Switch="o "/>
+    <BoolProperty Category="General" Description="The -part option tells the compiler to compile each file separately." DisplayName="Partial Compilation" Name="PartialCompilation" Switch="part"/>
+    <IntProperty Category="General" Description="The -recursion_depth_limit option specifies the maximum depth of recursion analysis, default is 256." DisplayName="Recursion Depth Limit" Name="RecursionDepthLimit" Switch="recursion_depth_limit "/>
+    <IntProperty Category="General" Description="The -static_loop_length_limit option specifies the maximum number of static loop iterations, default is 64." DisplayName="Static Loop Limit" Name="StaticLoopLimit" Switch="static_loop_length_limit "/>
+    <StringProperty Category="Command Line" Description="Additional options to add to the command line." DisplayName="Additional Options" Name="AdditionalOptions"/>
+  </Rule>
+  <ItemType DisplayName="MPL" Name="MPL"/>
+  <FileExtension ContentType="MPL" Name="*.mpl"/>
+  <ContentType DisplayName="MPL" ItemType="MPL" Name="MPL"/>
+</ProjectSchemaDefinitions>
