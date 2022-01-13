@@ -3,28 +3,6 @@
 #include <iostream>
 #include <tuple>
 
-template<class Entry> class ArrayIter {
-public:
-  ArrayIter(Entry* data, int size) : data(data), size(size) {}
-
-  Entry& get() const {
-    return *data;
-  }
-
-  void next() {
-    ++data;
-    --size;
-  }
-
-  bool valid() const {
-    return size != 0;
-  }
-
-private:
-  Entry* data;
-  int size;
-};
-
 struct Char {
   int codepoint;
 };
