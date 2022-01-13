@@ -35,10 +35,10 @@ Examples of code written in C++ and MPL
 * [MPL compiler](https://github.com/Matway/mpl-c)
   * https://github.com/Matway/mpl-c/releases/latest/download/mplc.exe
   * Put into Path-accessible folder, for example, `%USERPROFILE%/mpl`
-* [Code examples](https://dev.gravilink.com/mpl/mpl-examples) itself  
+* [Code examples](https://github.com/Matway/mpl-examples) itself  
   Clone it into the desired location and make sure the **path has no spaces and no non-ASCII characters in it**:
   ```
-  git clone https://dev.gravilink.com/mpl/mpl-examples.git
+  git clone https://github.com/Matway/mpl-examples.git
   ```
 * [MPL Standard Library](https://github.com/Matway/mpl-sl)  
   Set up the link to sl:
