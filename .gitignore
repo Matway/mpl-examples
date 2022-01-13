@@ -1,0 +1,15 @@
+# external libs
+**/sl
+
+# Visual Studio
+**/.vs/
+**/*.sln
+**/*.vcxproj.user
+**/x64
+**/x64_Debug/
+**/x64_Release/
+**/x32
+**/x32_Debug/
+**/x32_Release/
+**/Debug
+**/Release

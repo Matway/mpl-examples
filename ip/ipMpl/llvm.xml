@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="http://schemas.microsoft.com/build/2009/properties"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Rule DisplayName="LLVM" Name="LLVM" Order="19" PageTemplate="tool" SwitchPrefix="-">
+    <Rule.Categories>
+      <Category DisplayName="General" Name="General"/>
+      <Category DisplayName="All Options" Name="All Options" Subtype="Search"/>
+      <Category DisplayName="Command Line" Name="Command Line" Subtype="CommandLine"/>
+    </Rule.Categories>
+    <Rule.DataSource>
+      <DataSource HasConfigurationCondition="true" ItemType="LLVM" Persistence="ProjectFile"/>
+    </Rule.DataSource>
+    <StringProperty Category="General" Description="Path to the LLVM compiler." DisplayName="Compiler Path" IncludeInCommandLine="false" IsRequired="true" Name="CompilerPath" Subtype="file"/>
+    <StringProperty Category="General" Description="The -o option specifies the name of the .obj file that the compiler creates." DisplayName="Output File" IsRequired="true" Name="OutputFile" Switch="o "/>
+    <StringProperty Category="Command Line" Description="Additional options to add to the command line." DisplayName="Additional Options" Name="AdditionalOptions"/>
+  </Rule>
+  <ItemType DisplayName="LLVM" Name="LLVM"/>
+  <FileExtension ContentType="LLVM" Name="*.ll"/>
+  <ContentType DisplayName="LLVM" ItemType="LLVM" Name="LLVM"/>
+</ProjectSchemaDefinitions>
