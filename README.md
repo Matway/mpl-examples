@@ -58,7 +58,7 @@ Run project in VS or run
 
 # Benchmarks
 
-Table of measured running speed in seconds on the processor `Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz 2.80 GHz`
+Running time, in seconds, as measured on `Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz 2.80 GHz`
 
 | Example name   | C++  | MPL  |
 | -------------- | ---- | ---- | 
