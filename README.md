@@ -56,14 +56,16 @@ Run project in VS or run
 `path_to_example/x64_Release/project_name.exe` for MPL projects and
 `path_to_example/x64/Release/project_name.exe` for C++ projects.
 
-# Speed of examples
+# Benchmarks
 
-| Example name   | MPL      | C++   |
-| -------------- | -------- | ----- | 
-| array          | 4s       | 6.5s  |
-| bubbleSort     | 3s       | 15s   |
-| fibonacciCycle | 0.25s    | 2.5s  |
-| fibonacciRec   | 6s       | 9s    |
-| ip             | 1s       | 25s   |
-| mergeSort      | 10s      | 13s   |
-| table          | 0.05s    | 21.5s |
+Table of measured running speed in seconds on the processor `Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz 2.80 GHz`
+
+| Example name   | C++  | MPL  |
+| -------------- | ---- | ---- | 
+| array          | 6.5  | 4    |
+| bubbleSort     | 15   | 3    |
+| fibonacciCycle | 2.5  | 0.25 |
+| fibonacciRec   | 9    | 6    |
+| ip             | 25   | 1    |
+| mergeSort      | 13   | 10   |
+| table          | 21.5 | 0.05 |
