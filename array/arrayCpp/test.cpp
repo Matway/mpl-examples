@@ -55,24 +55,5 @@ int main() {
     }
   }
 
-  for (int i = 0; i < 256; ++i) {
-    data[0] = i;
-    for (int i = 0; i < 256; ++i) {
-      data[1] = i;
-      for (int i = 0; i < 256; ++i) {
-        data[2] = i;
-        for (int i = 0; i < 256; ++i) {
-          data[3] = i;
-          for (int i = 0; i < 256; ++i) {
-            int res = find(data, 4, i);
-            if (res >= 1) {
-              result++;
-            }
-          }
-        }
-      }
-    }
-  }
-
   std::cout << result << std::endl;
 }

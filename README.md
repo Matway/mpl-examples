@@ -3,6 +3,7 @@
   - [Prerequisites](#prerequisites)
   - [Windows builds](#windows-build)
 - [Run](#run)
+- [Speed of examples](#speed-of-examples)
 
 # Description
 
@@ -54,3 +55,15 @@ Build VS project: `project_name.vcxproj`
 Run project in VS or run 
 `path_to_example/x64_Release/project_name.exe` for MPL projects and
 `path_to_example/x64/Release/project_name.exe` for C++ projects.
+
+# Speed of examples
+
+| Example name   | MPL      | C++   |
+| -------------- | -------- | ----- | 
+| array          | 4s       | 6.5s  |
+| bubbleSort     | 3s       | 15s   |
+| fibonacciCycle | 0.25s    | 2.5s  |
+| fibonacciRec   | 6s       | 9s    |
+| ip             | 1s       | 25s   |
+| mergeSort      | 10s      | 13s   |
+| table          | 0.05s    | 21.5s |
