@@ -1,6 +1,5 @@
 - [Description](#description)
-- [Build](#build)
-  - [Prerequisites](#prerequisites)
+- [Prerequisites](#prerequisites)
 - [Run](#run)
 - [Speed of examples](#speed-of-examples)
 
@@ -8,8 +7,7 @@
 
 Examples of code written in C++ and MPL.
 
-# Build
-## Prerequisites
+# Prerequisites
 * Git
   * Download it via https://git-scm.com/download/win
   * Install it. During the installation select an option "Add to PATH"
