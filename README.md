@@ -39,11 +39,11 @@ Open cmd. Type command ```cd path_to_folder_with_mpl_example```. Type command ``
 
 # Speed of examples
 
-Running time, in seconds, as measured on `Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz 2.80 GHz`
+Running time, in seconds, as measured on `AMD Ryzen 9 5900HX with Radeon Graphics 3.30 GHz`
 
 | Example name   | C++  | MPL  |
 | -------------- | ---- | ---- | 
-| bubbleSort     | 15   | 3    |
-| ip             | 25   | 1    |
-| mergeSort      | 13   | 10   |
-| table          | 21.5 | 0.05 |
+| bubbleSort     | 7.61 | 1.45 |
+| ip             | 0.75 | 0.06 |
+| mergeSort      | 7.70 | 5.34 |
+| table          | 8.00 | 0.05 |
