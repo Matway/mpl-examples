@@ -6,23 +6,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <MPL Include="sl\String.mpl">
+    <MPL Include="..\..\sl\String.mpl">
       <Filter>sl</Filter>
     </MPL>
-    <MPL Include="sl\control.mpl">
+    <MPL Include="..\..\sl\control.mpl">
       <Filter>sl</Filter>
     </MPL>
     <MPL Include="test.mpl" />
-    <MPL Include="sl\conventions.mpl">
+    <MPL Include="..\..\sl\conventions.mpl">
       <Filter>sl</Filter>
     </MPL>
-    <MPL Include="sl\algorithm.mpl">
+    <MPL Include="..\..\sl\algorithm.mpl">
       <Filter>sl</Filter>
     </MPL>
-    <MPL Include="sl\Array.mpl">
+    <MPL Include="..\..\sl\Array.mpl">
       <Filter>sl</Filter>
     </MPL>
-    <MPL Include="sl\memory.mpl">
+    <MPL Include="..\..\sl\memory.mpl">
+      <Filter>sl</Filter>
+    </MPL>
+    <MPL Include="..\..\sl\Span.mpl">
       <Filter>sl</Filter>
     </MPL>
   </ItemGroup>

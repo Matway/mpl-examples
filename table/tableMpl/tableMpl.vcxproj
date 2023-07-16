@@ -102,7 +102,7 @@
     </Link>
     <MPL>
       <AdditionalOptions>-hide_prefix sl/</AdditionalOptions>
-      <IncludeFolders>sl</IncludeFolders>
+      <IncludeFolders>..\..\sl</IncludeFolders>
     </MPL>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -123,7 +123,7 @@
     </Link>
     <MPL>
       <AdditionalOptions>-hide_prefix sl/</AdditionalOptions>
-      <IncludeFolders>sl</IncludeFolders>
+      <IncludeFolders>..\..\sl</IncludeFolders>
     </MPL>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -139,7 +139,7 @@
     </Link>
     <MPL>
       <AdditionalOptions>-hide_prefix sl/</AdditionalOptions>
-      <IncludeFolders>sl</IncludeFolders>
+      <IncludeFolders>..\..\sl</IncludeFolders>
     </MPL>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,16 +160,18 @@
     </Link>
     <MPL>
       <AdditionalOptions>-hide_prefix sl/</AdditionalOptions>
-      <IncludeFolders>sl</IncludeFolders>
+      <IncludeFolders>..\..\sl</IncludeFolders>
+      <PartialCompilation>false</PartialCompilation>
     </MPL>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <MPL Include="sl\Array.mpl" />
-    <MPL Include="sl\String.mpl" />
-    <MPL Include="sl\algorithm.mpl" />
-    <MPL Include="sl\control.mpl" />
-    <MPL Include="sl\conventions.mpl" />
-    <MPL Include="sl\memory.mpl" />
+    <MPL Include="..\..\sl\Array.mpl" />
+    <MPL Include="..\..\sl\String.mpl" />
+    <MPL Include="..\..\sl\Span.mpl" />
+    <MPL Include="..\..\sl\algorithm.mpl" />
+    <MPL Include="..\..\sl\control.mpl" />
+    <MPL Include="..\..\sl\conventions.mpl" />
+    <MPL Include="..\..\sl\memory.mpl" />
     <MPL Include="test.mpl" />
   </ItemGroup>
   <ItemGroup>

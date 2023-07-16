@@ -13,7 +13,7 @@ RandomLCG: [{
 bubbleSort: [
   data:;
 
-  data.getSize [
+  data.size [
     j: i new;
     size i - [
       i data @ j data @ > [

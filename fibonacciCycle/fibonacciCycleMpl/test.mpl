@@ -4,8 +4,8 @@
 fibonacci: [
   number:;
 
-  number 1n64 > ~ [
-    number new
+  number 1 > ~ [
+    number Nat64 cast
   ] [
     fib1: 0n64;
     fib2: 1n64;
@@ -25,7 +25,7 @@ fibonacci: [
 
   10000000 dynamic [
     45 dynamic [
-      result i Nat64 cast fibonacci 2n64 mod + !result
+      result i fibonacci 2n64 mod + !result
     ] times
   ] times
 
