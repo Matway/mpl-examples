@@ -13,25 +13,25 @@ clang++ .\ip\ipCpp\test.cpp -o output\ipCpp.exe -O3
 clang++ .\mergeSort\mergeSortCpp\test.cpp -o output\mergeSortCpp.exe -O3
 clang++ .\table\tableCpp\test.cpp -o output\tableCpp.exe -O3
 
-mplc .\array\arrayMpl\test.mpl -I .\sl -o "arrayMpl.ll"
+mplc .\array\arrayMpl\test.mpl -I .\sl -o "arrayMpl.ll" -ndebug
 move .\arrayMpl.ll .\output > NUL
 
-mplc .\bubbleSort\bubbleSortMpl\test.mpl -I .\sl -o "bubbleSortMpl.ll"
+mplc .\bubbleSort\bubbleSortMpl\test.mpl -I .\sl -o "bubbleSortMpl.ll" -ndebug
 move .\bubbleSortMpl.ll .\output  > NUL
 
-mplc .\fibonacciCycle\fibonacciCycleMpl\test.mpl -I .\sl -o "fibonacciCycleMpl.ll"
+mplc .\fibonacciCycle\fibonacciCycleMpl\test.mpl -I .\sl -o "fibonacciCycleMpl.ll" -ndebug
 move .\fibonacciCycleMpl.ll .\output  > NUL
 
-mplc .\fibonacciRec\fibonacciRecMpl\test.mpl -I .\sl -o "fibonacciRecMpl.ll"
+mplc .\fibonacciRec\fibonacciRecMpl\test.mpl -I .\sl -o "fibonacciRecMpl.ll" -ndebug
 move .\fibonacciRecMpl.ll .\output  > NUL
 
-mplc .\ip\ipMpl\test.mpl -I .\sl -o "ipMpl.ll"
+mplc .\ip\ipMpl\test.mpl -I .\sl -o "ipMpl.ll" -ndebug
 move .\ipMpl.ll .\output  > NUL
 
-mplc .\mergeSort\mergeSortMpl\test.mpl -I .\sl -o "mergeSortMpl.ll"
+mplc .\mergeSort\mergeSortMpl\test.mpl -I .\sl -o "mergeSortMpl.ll" -ndebug
 move .\mergeSortMpl.ll .\output  > NUL
 
-mplc .\table\tableMpl\test.mpl -I .\sl -o "tableMpl.ll"
+mplc .\table\tableMpl\test.mpl -I .\sl -o "tableMpl.ll" -ndebug
 move .\tableMpl.ll .\output  > NUL
 
 clang++ .\output\arrayMpl.ll -o output\arrayMpl.exe -O3 2>NUL
