@@ -15,7 +15,7 @@ fibonacciRec: [
 {} {} {} [
   result: 0i64;
 
-  45 dynamic [ # MPL calculate it in compile-time when there is no dynamic here
+  45 [
     result i Int64 cast fibonacciRec + !result
   ] times
 
