@@ -71,5 +71,5 @@ int main() {
   }
 
   std::cout << result << std::endl;
-  std::cout << 9259542112527974400 << std::endl;
+  std::cout << 9259542112527974400ll << std::endl;
 }
