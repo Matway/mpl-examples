@@ -11,6 +11,9 @@ Examples of code written in C++ and MPL
 * Git
   * Download via https://git-scm.com/download/win
   * Install, during the installation select an option "Add to PATH"
+* Python
+  * Download via https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe
+  * Install, during the installation select an option "Add to PATH"
 * MPL compiler
   * https://github.com/Matway/mpl-c/releases/latest/download/mplc.exe
   * Put into some folder, for example, `%USERPROFILE%/mpl`
@@ -48,13 +51,13 @@ Examples of code written in C++ and MPL
 
 # Speed of examples
 
-Running time, in seconds, as measured on `Intel Core i9-12950HX @ 2.30GHz`
+Running time, in seconds, as measured on `AMD Ryzen 9 5900HX with Radeon Graphics 3.30 GHz`
 
-| Example name   | C++  | MPL  |
-| -------------- | ---- | ---- | 
-| bubbleSort     | 9.85 | 1.32 |
-| fibonacciCycle | 1.83 | 0.05 |
-| fibonacciRec   | 3.70 | 0.06 |
-| ip             | 0.88 | 0.06 |
-| mergeSort      | 7.49 | 5.34 |
-| table          | 6.31 | 0.06 |
+| Example name   | C++  | MPL  | Python
+| -------------- | ---- | ---- | ------
+| bubbleSort     | 7.55 | 1.36 | 353.40
+| fibonacciCycle | 1.77 | 0.06 | 608.93
+| fibonacciRec   | 3.55 | 0.07 | 399.50
+| ip             | 0.75 | 0.05 | 2489.09
+| mergeSort      | 7.55 | 5.22 | 354.80
+| table          | 7.92 | 0.06 | 12308.37
