@@ -1,8 +1,6 @@
 "String"    use
-"algebra"   use
 "algorithm" use
 "control"   use
-"memory"    use
 
 convertToInt: [
   ip: size:;;

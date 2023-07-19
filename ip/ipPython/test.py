@@ -9,7 +9,7 @@ def convertToInt(ip, size):
       result += ip[i] * 256
     elif i == 3:
       result += ip[i]
-  
+
   return result
 
 def main():
@@ -19,7 +19,7 @@ def main():
     ip[0] = i
     res = convertToInt(ip, 1)
     result += res
-  
+
   for i in range(256):
     ip[0] = i
     for j in range(256):

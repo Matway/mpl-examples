@@ -9,7 +9,7 @@ def fibonacci(number):
     fib1 = fib2
     fib2 = i
     result += fib1 + fib2
-  
+
   return result
 
 def main():
@@ -17,7 +17,7 @@ def main():
   for _ in range(10000000):
     for i in range(45):
       result += fibonacci(i) % 2
-    
+
   print(result)
 
 if __name__ == "__main__":

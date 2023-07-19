@@ -5,12 +5,12 @@ mkdir output
 
 echo Compilation. Please wait...
 
-clang++ .\bubbleSort\bubbleSortCpp\test.cpp -o output\bubbleSortCpp.exe -O3
-clang++ .\fibonacciCycle\fibonacciCycleCpp\test.cpp -o output\fibonacciCycleCpp.exe -O3
-clang++ .\fibonacciRec\fibonacciRecCpp\test.cpp -o output\fibonacciRecCpp.exe -O3
-clang++ .\ip\ipCpp\test.cpp -o output\ipCpp.exe -O3
-clang++ .\mergeSort\mergeSortCpp\test.cpp -o output\mergeSortCpp.exe -O3
-clang++ .\table\tableCpp\test.cpp -o output\tableCpp.exe -O3
+clang++ .\bubbleSort\bubbleSortCpp\test.cpp -o output\bubbleSortCpp.exe -O3 -D NDEBUG
+clang++ .\fibonacciCycle\fibonacciCycleCpp\test.cpp -o output\fibonacciCycleCpp.exe -O3 -D NDEBUG
+clang++ .\fibonacciRec\fibonacciRecCpp\test.cpp -o output\fibonacciRecCpp.exe -O3 -D NDEBUG
+clang++ .\ip\ipCpp\test.cpp -o output\ipCpp.exe -O3 -D NDEBUG
+clang++ .\mergeSort\mergeSortCpp\test.cpp -o output\mergeSortCpp.exe -O3 -D NDEBUG
+clang++ .\table\tableCpp\test.cpp -o output\tableCpp.exe -O3 -D NDEBUG
 
 mplc .\bubbleSort\bubbleSortMpl\test.mpl -I .\sl -o "bubbleSortMpl.ll" -ndebug
 move .\bubbleSortMpl.ll .\output  > NUL
@@ -72,14 +72,14 @@ call timecmd ".\output\tableMpl.exe > NUL"
 
 echo Python benchmark:
 echo | set /p="BubbleSort: "
-call timecmd "python .\bubbleSort\bubbleSortPython\test.py > NUL"
+call timecmd "python -OO .\bubbleSort\bubbleSortPython\test.py > NUL"
 echo | set /p="fibonacciCycle: "
-call timecmd "python .\fibonacciCycle\fibonacciCyclePython\test.py > NUL"
+call timecmd "python -OO .\fibonacciCycle\fibonacciCyclePython\test.py > NUL"
 echo | set /p="fibonacciRec: "
-call timecmd "python .\fibonacciRec\fibonacciRecPython\test.py > NUL"
+call timecmd "python -OO .\fibonacciRec\fibonacciRecPython\test.py > NUL"
 echo | set /p="ip: "
-call timecmd "python .\ip\ipPython\test.py > NUL"
+call timecmd "python -OO .\ip\ipPython\test.py > NUL"
 echo | set /p="MergeSort: "
-call timecmd "python .\mergeSort\mergeSortPython\test.py > NUL"
+call timecmd "python -OO .\mergeSort\mergeSortPython\test.py > NUL"
 echo | set /p="Table: "
-call timecmd "python .\table\tablePython\test.py > NUL"
+call timecmd "python -OO .\table\tablePython\test.py > NUL"

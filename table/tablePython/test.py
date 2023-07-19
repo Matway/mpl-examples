@@ -2,20 +2,16 @@ class Char:
     def __init__(self, codepoint):
       self.codepoint = codepoint
 
-
 REPLACEMENT_CHARACTER = Char(0xFFFD)
 validCount = 0
 iterationCount = 0
 
-
 def isValidCodepoint(codepoint):
   return codepoint >= 0 and codepoint <= 0xD7FF or codepoint >= 0xE000 and codepoint <= 0x10FFFF
-
 
 def toChar(codepoint):
   assert isValidCodepoint(codepoint)
   return Char(codepoint)
-
 
 def decodeCharReturn3(source, unit0, unit1):
   source.next()
@@ -35,7 +31,6 @@ def decodeCharReturn3(source, unit0, unit1):
         ), 3
       )
 
-
 def decodeCharReturn4(source, unit0, unit1):
   source.next()
   if not source.valid():
@@ -45,18 +40,21 @@ def decodeCharReturn4(source, unit0, unit1):
     if (unit2 & 0xC0) != 0x80:
       return (REPLACEMENT_CHARACTER, 0)
     else:
-      unit3 = source.get()
-      if ((unit3 & 0xC0) != 0x80):
+      source.next()
+      if not source.valid():
         return (REPLACEMENT_CHARACTER, 0)
       else:
-        source.next()
-        return (toChar(
-          ((unit0) & 0x07) << 18 |
-          ((unit1) & 0x3F) << 12 |
-          ((unit2) & 0x3F) << 6 |
-          ((unit3) & 0x3F)
-        ), 4)
-      
+        unit3 = source.get()
+        if ((unit3 & 0xC0) != 0x80):
+          return (REPLACEMENT_CHARACTER, 0)
+        else:
+          source.next()
+          return (toChar(
+            ((unit0) & 0x07) << 18 |
+            ((unit1) & 0x3F) << 12 |
+            ((unit2) & 0x3F) << 6 |
+            ((unit3) & 0x3F)
+          ), 4)
 
 def decodeChar(source):
   if not source.valid():
@@ -121,7 +119,6 @@ def decodeChar(source):
     else:
         return (REPLACEMENT_CHARACTER, 0)
 
-
 def mainValidate(data, size):
   global validCount, iterationCount
   class Iter:
@@ -130,11 +127,11 @@ def mainValidate(data, size):
       self.size = size
       self.key = key
       self.usedSize = usedSize
-    
+
     def get(self):
       self.usedSize = self.key + 1
       return data[self.key]
-    
+
     def next(self):
       self.key += 1
 
@@ -145,9 +142,8 @@ def mainValidate(data, size):
   valueSize = decodeChar(iter)
   if iter.usedSize == size and valueSize[1] > 0:
     validCount += 1
-  
-  iterationCount += 1
 
+  iterationCount += 1
 
 def main():
   global validCount, iterationCount
@@ -163,7 +159,7 @@ def main():
     for j in range(256):
       data[1] = j
       mainValidate(data, 2)
-  
+
   for i in range(256):
     data[0] = i
     for j in range(256):
@@ -186,7 +182,6 @@ def main():
   print(1112064)
   print(iterationCount)
   print(256 + 256 * 256 + 256 * 256 * 256 + 256 * 256 * 256 * 256)
-
 
 if __name__ == "__main__":
   main()
