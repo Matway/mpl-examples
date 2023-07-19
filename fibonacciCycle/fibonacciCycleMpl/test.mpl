@@ -2,32 +2,26 @@
 "control" use
 
 fibonacci: [
-  number:;
+  n:;
+  n 2 < [n new] [
+    result: 1;
 
-  number 1n64 > ~ [
-    number new
-  ] [
-    fib1: 0n64;
-    fib2: 1n64;
-    result: 1n64;
-    number Int32 cast [
-      fib2 new     !fib1
-      i Nat64 cast !fib2
-      result fib1 fib2 + + !result
+    acc: 0;
+    n 1 - [
+      result new [acc + !result] keep new !acc
     ] times
 
-    result new
+    result
   ] if
 ];
 
 {} {} {} [
-  result: 0n64;
+  checksum: 0;
 
-  10000000 dynamic [
-    45 [
-      result i Nat64 cast fibonacci 2n64 mod + !result
-    ] times
+  1.0e7 Int32 cast dynamic [
+    i32FibMax: [46];
+    i32FibMax 1 + [checksum i fibonacci 2 mod + !checksum] times
   ] times
 
-  result print LF print
+  checksum print LF print
 ] "main" exportFunction

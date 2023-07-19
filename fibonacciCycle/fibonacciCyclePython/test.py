@@ -1,24 +1,26 @@
-def fibonacci(number):
-  if number <= 1:
-    return number
+def fibonacci(n):
+  if n < 2:
+    return n
 
-  fib1 = 0
-  fib2 = 1
   result = 1
-  for i in range(number):
-    fib1 = fib2
-    fib2 = i
-    result += fib1 + fib2
+
+  acc = 0
+  for i in range(n - 1):
+    tmp = result
+    result += acc
+    acc = tmp
 
   return result
 
 def main():
-  result = 0
-  for _ in range(10000000):
-    for i in range(45):
-      result += fibonacci(i) % 2
+  checksum = 0
 
-  print(result)
+  for _ in range(10_000_000):
+    i32FibMax = 46
+    for i in range(i32FibMax + 1):
+      checksum += fibonacci(i) % 2
+
+  print(checksum)
 
 if __name__ == "__main__":
   main()

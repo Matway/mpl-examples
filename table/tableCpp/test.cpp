@@ -7,10 +7,10 @@ struct Char {
   int codepoint;
 };
 
-const static Char REPLACEMENT_CHARACTER = {0xFFFD};
+constexpr Char REPLACEMENT_CHARACTER{0xFFFD};
 
 bool isValidCodepoint(int codepoint) {
-  return codepoint >= 0 && codepoint <= 0xD7FF || codepoint >= 0xE000 && codepoint <= 0x10FFFF;
+  return (codepoint >= 0 && codepoint <= 0xD7FF) || (codepoint >= 0xE000 && codepoint <= 0x10FFFF);
 }
 
 Char toChar(int codepoint) {
@@ -143,82 +143,90 @@ template<class Iter> std::tuple<Char, int> decodeChar(Iter& source) {
   }
 }
 
-void mainValidate(uint8_t* data, int size, int& validCount, int64_t& iterationCount) {
-  struct Iter {
-    uint8_t* data;
-    int size;
-    int key;
-    int& usedSize;
-
-    uint8_t& get() const {
-      usedSize = key + 1;
-      return data[key];
-    }
-
-    void next() {
-      ++key;
-    }
-
-    bool valid() const {
-      return key != size;
-    }
-  };
-
-  int usedSize = 0;
-  Iter iter = {data, size, 0, usedSize};
-  auto valueSize = decodeChar(iter);
-  if (usedSize == size && std::get<1>(valueSize) > 0) {
-    ++validCount;
-  }
-
-  ++iterationCount;
-}
-
-int main() {
-  int validCount = 0;
+struct DecodeCharTest {
   int64_t iterationCount = 0;
+  int validCount = 0;
   uint8_t data[4];
 
-  for (int i = 0; i < 256; ++i) {
-    data[0] = i;
-    mainValidate(data, 1, validCount, iterationCount);
-  }
+  void validate(int size) {
+    int usedSize = 0;
 
-  for (int i = 0; i < 256; ++i) {
-    data[0] = i;
-    for (int i = 0; i < 256; ++i) {
-      data[1] = i;
-      mainValidate(data, 2, validCount, iterationCount);
+    struct {
+      uint8_t *data;
+      int &usedSize;
+      int size;
+      int key;
+
+      uint8_t& get() const {
+        usedSize = key + 1;
+        return data[key];
+      }
+
+      void next() {
+        ++key;
+      }
+
+      bool valid() const {
+        return key != size;
+      }
+    } iter{data, usedSize, size, 0};
+
+    auto valueSize = decodeChar(iter);
+    if (usedSize == size && std::get<1>(valueSize) > 0) {
+      ++validCount;
     }
+
+    ++iterationCount;
   }
 
-  for (int i = 0; i < 256; ++i) {
-    data[0] = i;
+  auto test() {
     for (int i = 0; i < 256; ++i) {
-      data[1] = i;
+      data[0] = i;
+      validate(1);
+    }
+
+    for (int i = 0; i < 256; ++i) {
+      data[0] = i;
       for (int i = 0; i < 256; ++i) {
-        data[2] = i;
-        mainValidate(data, 3, validCount, iterationCount);
+        data[1] = i;
+        validate(2);
       }
     }
-  }
 
-  for (int i = 0; i < 256; ++i) {
-    data[0] = i;
     for (int i = 0; i < 256; ++i) {
-      data[1] = i;
+      data[0] = i;
       for (int i = 0; i < 256; ++i) {
-        data[2] = i;
+        data[1] = i;
         for (int i = 0; i < 256; ++i) {
-          data[3] = i;
-          mainValidate(data, 4, validCount, iterationCount);
+          data[2] = i;
+          validate(3);
         }
       }
     }
-  }
 
-  std::cout << validCount << std::endl;
+    for (int i = 0; i < 256; ++i) {
+      data[0] = i;
+      for (int i = 0; i < 256; ++i) {
+        data[1] = i;
+        for (int i = 0; i < 256; ++i) {
+          data[2] = i;
+          for (int i = 0; i < 256; ++i) {
+            data[3] = i;
+            validate(4);
+          }
+        }
+      }
+    }
+
+    struct Result { int64_t iterationCount; int validCount; };
+    return Result{iterationCount, validCount};
+  }
+};
+
+int main() {
+  auto counter = DecodeCharTest{}.test();
+  std::cout << counter.validCount << std::endl;
   std::cout << 1112064 << std::endl;
-  std::cout << iterationCount << std::endl;
+  std::cout << counter.iterationCount << std::endl;
   std::cout << int64_t(256) + int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) * int64_t(256) << std::endl;
 }

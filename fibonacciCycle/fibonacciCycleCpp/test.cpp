@@ -1,31 +1,28 @@
 #include <iostream>
 
-uint64_t fibonacci(uint64_t number) {
-  if (number <= 1) {
-    return number;
-  }
+int fibonacci(int n) {
+  if (n < 2)
+    return n;
 
-  uint64_t fib1 = 0;
-  uint64_t fib2 = 1;
-  uint64_t result = 1;
-  for (uint64_t i = 0; i < number; i++)
-  {
-    fib1 = fib2;
-    fib2 = i;
-    result += fib1 + fib2;
+  int result = 1;
+
+  int acc = 0;
+  for (int _ = 0; _ < n - 1; ++_) {
+    int tmp = result;
+    result += acc;
+    acc = tmp;
   }
 
   return result;
 }
 
 int main() {
-  uint64_t result = 0;
+  int checksum = 0;
 
-  for (int i = 0; i < 10000000; ++i) {
-    for (int i = 0; i < 45; ++i) {
-      result += fibonacci(i) % 2;
-    }
+  for (int _ = 0; _ < int(1e7); ++_) {
+    int i32FibMax = 46;
+    for (int i = 0; i < i32FibMax + 1; ++i)
+      checksum += fibonacci(i) % 2;
   }
-
-  std::cout << result << std::endl;
+  std::cout << checksum << std::endl;
 }

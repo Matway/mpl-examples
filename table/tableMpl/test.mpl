@@ -82,7 +82,11 @@ decodeChar: [
   ] if
 ];
 
-{} {} {} [
+testDecodeChar: [
+  iterationCount: 0i64;
+  validCount: 0;
+  data: Nat8 4 array;
+
   validate: [
     size:;
     usedSize: 0;
@@ -94,10 +98,6 @@ decodeChar: [
 
     iterationCount 1i64 + !iterationCount
   ];
-
-  validCount: 0;
-  iterationCount: 0i64;
-  data: Nat8 4 array;
 
   0x100 dynamic [
     i Nat8 cast 0 @data !
@@ -137,8 +137,15 @@ decodeChar: [
     ] times
   ] times
 
-  validCount print LF print
-  1112064 print LF print
-  iterationCount print LF print
-  256i64 256i64 sqr + 256i64 dup sqr * + 256i64 sqr sqr + print LF print
+  {iterationCount: iterationCount new; validCount: validCount new;}
+];
+
+{} {} {} [
+  counter: testDecodeChar;
+  (
+    counter.validCount LF
+    1112064 LF
+    counter.iterationCount LF
+    256i64 256i64 sqr + 256i64 dup sqr * + 256i64 sqr sqr + LF
+  ) printList
 ] "main" exportFunction

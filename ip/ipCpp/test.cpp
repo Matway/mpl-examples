@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <iostream>
 
 uint32_t convertToInt(uint8_t* ip, int size) {
