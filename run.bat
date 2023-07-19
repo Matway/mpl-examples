@@ -38,34 +38,45 @@ clang++ .\output\mergeSortMpl.ll -o output\mergeSortMpl.exe -O3  2>NUL
 clang++ .\output\tableMpl.ll -o output\tableMpl.exe -O3  2>NUL
 
 echo Compilation successful!
-
-echo Time on BubbleSort.
-echo | set /p="C++: "
+echo:
+echo C++ benchmark:
+echo | set /p="BubbleSort: "
 call timecmd ".\output\bubbleSortCpp.exe > NUL"
-echo | set /p="MPL: "
-call timecmd ".\output\bubbleSortMpl.exe > NUL"
-echo Time on fibonacciCycle.
-echo | set /p="C++: "
+echo | set /p="fibonacciCycle: "
 call timecmd ".\output\fibonacciCycleCpp.exe > NUL"
-echo | set /p="MPL: "
-call timecmd ".\output\fibonacciCycleMpl.exe > NUL"
-echo Time on fibonacciRec.
-echo | set /p="C++: "
+echo | set /p="fibonacciRec: "
 call timecmd ".\output\fibonacciRecCpp.exe > NUL"
-echo | set /p="MPL: "
-call timecmd ".\output\fibonacciRecMpl.exe > NUL"
-echo Time on ip.
-echo | set /p="C++: "
+echo | set /p="ip: "
 call timecmd ".\output\ipCpp.exe > NUL"
-echo | set /p="MPL: "
-call timecmd ".\output\ipMpl.exe > NUL"
-echo Time on MergeSort.
-echo | set /p="C++: "
+echo | set /p="MergeSort: "
 call timecmd ".\output\mergeSortCpp.exe > NUL"
-echo | set /p="MPL: "
-call timecmd ".\output\mergeSortMpl.exe > NUL"
-echo Time on Table.
-echo | set /p="C++: "
+echo | set /p="Table: "
 call timecmd ".\output\tableCpp.exe > NUL"
-echo | set /p="MPL: "
+echo:
+echo Mpl benchmark:
+echo | set /p="BubbleSort: "
+call timecmd ".\output\bubbleSortMpl.exe > NUL"
+echo | set /p="fibonacciCycle: "
+call timecmd ".\output\fibonacciCycleMpl.exe > NUL"
+echo | set /p="fibonacciRec: "
+call timecmd ".\output\fibonacciRecMpl.exe > NUL"
+echo | set /p="ip: "
+call timecmd ".\output\ipMpl.exe > NUL"
+echo | set /p="MergeSort: "
+call timecmd ".\output\mergeSortMpl.exe > NUL"
+echo | set /p="Table: "
 call timecmd ".\output\tableMpl.exe > NUL"
+echo:
+echo Python benchmark:
+echo | set /p="BubbleSort: "
+call timecmd "python .\bubbleSort\bubbleSortPython\test.py > NUL"
+echo | set /p="fibonacciCycle: "
+call timecmd "python .\fibonacciCycle\fibonacciCyclePython\test.py > NUL"
+echo | set /p="fibonacciRec: "
+call timecmd "python .\fibonacciRec\fibonacciRecPython\test.py > NUL"
+echo | set /p="ip: "
+call timecmd "python .\ip\ipPython\test.py > NUL"
+echo | set /p="MergeSort: "
+call timecmd "python .\mergeSort\mergeSortPython\test.py > NUL"
+echo | set /p="Table: "
+call timecmd "python .\table\tablePython\test.py > NUL"

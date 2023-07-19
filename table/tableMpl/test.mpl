@@ -1,7 +1,6 @@
 "String"    use
 "algorithm" use
 "control"   use
-"memory"    use
 
 Char: [{
   codepoint: Int32;
@@ -20,7 +19,7 @@ toChar: [Int32 same] [
 ] pfunc;
 
 decodeChar: [
-  source: toIter;
+  source:;
 
   return3: [
     @source.next source.valid ~ [REPLACEMENT_CHARACTER 0] [
