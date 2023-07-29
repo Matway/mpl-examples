@@ -1,14 +1,16 @@
 #include <iostream>
 
+#include <common.hpp>
+
 int fibonacci(int n) {
   if (n < 2)
     return n;
 
-  int result = 1;
+  int result{1};
 
-  int acc = 0;
-  for (int _ = 0; _ < n - 1; ++_) {
-    int tmp = result;
+  int acc{};
+  for (int _{}; _ < n - 1; ++_) {
+    int tmp{result};
     result += acc;
     acc = tmp;
   }
@@ -17,12 +19,16 @@ int fibonacci(int n) {
 }
 
 int main() {
-  int checksum = 0;
+  int checksum{};
 
-  for (int _ = 0; _ < int(1e7); ++_) {
-    int i32FibMax = 46;
-    for (int i = 0; i < i32FibMax + 1; ++i)
+  auto startPoint{test.ticks()};
+  for (int _{}; _ < int(1e7); ++_) {
+    int i32FibMax{46};
+    for (int i{}; i < i32FibMax + 1; ++i)
       checksum += fibonacci(i) % 2;
   }
+  auto time{test.since(startPoint)};
+
   std::cout << checksum << std::endl;
+  test.store("fibonacciCycle", time);
 }

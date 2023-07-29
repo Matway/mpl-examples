@@ -1,12 +1,21 @@
 "String"  use
 "control" use
 
+"ticks" use
+
+"common" use
+
 fibonacci: [
   n:;
   n 2 < [n new] [n 1 - fibonacci n 2 - fibonacci +] if
 ];
 
 {} {} {} [
+  startPoint: ticks;
   i32FibMax: [46];
-  0n32 i32FibMax 1 + [i fibonacci Nat32 cast xor] times print LF print
+  checksum: 0n32 i32FibMax 1 + [i fibonacci Nat32 cast xor] times;
+  time: startPoint since;
+
+  checksum print LF print
+  "fibonacciRec" time store
 ] "main" exportFunction

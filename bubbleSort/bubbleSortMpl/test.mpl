@@ -1,25 +1,22 @@
-"Array"   use
-"String"  use
-"control" use
+"Array"     use
+"String"    use
+"algorithm" use
+"control"   use
 
-RandomLCG: [{
-  seed: 0n32;
-  nextSeed: [
-    seed 0x8088405n32 * 1n32 + @seed set
-    seed new
-  ];
-}];
+"ticks" use
+
+"common" use
 
 bubbleSort: [
   data:;
 
   data.size [
     j: i new;
-    size i - [
-      i data @ j data @ > [
-        tmp: i data @ new;
-        j data @ new i @data !
-        tmp new j @data !
+    data.size i - [
+      i data.at j data.at  > [
+        i data.at new
+        j data.at i @data.at set
+        j @data.at set
       ] when
       j 1 + !j
     ] times
@@ -27,21 +24,13 @@ bubbleSort: [
 ];
 
 {} {} {} [
-  size: 100000;
-  data: Nat32 Array;
-  size @data.resize
+  size: [1.0e5 Int32 cast];
+  source: RandomLcgIter size [Nat32] headIter dynamic toArray;
 
-  rand: RandomLCG;
+  ticks
+  @source bubbleSort
+  time: since;
 
-  size dynamic [
-    @rand.nextSeed i @data !
-  ] times
-
-  @data bubbleSort
-
-  (
-    0        data @ " "
-    size 2 / data @ " "
-    size 1 - data @ " " LF
-  ) printList
+  (0 source.at " " size 2 / source.at " " size 1 - source.at LF) printList
+  "bubbleSort" time store
 ] "main" exportFunction

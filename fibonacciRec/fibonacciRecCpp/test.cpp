@@ -1,4 +1,7 @@
 #include <iostream>
+#include <limits>
+
+#include <common.hpp>
 
 int fibonacci(int n) {
   if (n < 2)
@@ -8,11 +11,14 @@ int fibonacci(int n) {
 }
 
 int main() {
-  unsigned checksum = 0u;
+  unsigned checksum{};
 
-  int i32FibMax = 46;
-  for (int i = 0; i < i32FibMax + 1; ++i)
+  auto startPoint{test.ticks()};
+  constexpr int i32FibMax{46};
+  for (int i{}; i < i32FibMax + 1; ++i)
     checksum ^= unsigned(fibonacci(i));
+  auto time{test.since(startPoint)};
 
   std::cout << checksum << std::endl;
+  test.store("fibonacciRec", time);
 }

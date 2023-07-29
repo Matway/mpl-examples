@@ -3,6 +3,8 @@
 #include <iostream>
 #include <tuple>
 
+#include <common.hpp>
+
 struct Char {
   int codepoint;
 };
@@ -18,7 +20,8 @@ Char toChar(int codepoint) {
   return {codepoint};
 }
 
-template<class Iter> std::tuple<Char, int> decodeCharReturn3(Iter& source, uint8_t unit0, uint8_t unit1) {
+template<class Iter>
+std::tuple<Char, int> decodeCharReturn3(Iter& source, uint8_t unit0, uint8_t unit1) {
   source.next();
   if (!source.valid()) {
     return {REPLACEMENT_CHARACTER, 0};
@@ -37,7 +40,8 @@ template<class Iter> std::tuple<Char, int> decodeCharReturn3(Iter& source, uint8
   }
 }
 
-template<class Iter> std::tuple<Char, int> decodeCharReturn4(Iter& source, uint8_t unit0, uint8_t unit1) {
+template<class Iter>
+std::tuple<Char, int> decodeCharReturn4(Iter& source, uint8_t unit0, uint8_t unit1) {
   source.next();
   if (!source.valid()) {
     return {REPLACEMENT_CHARACTER, 0};
@@ -67,7 +71,8 @@ template<class Iter> std::tuple<Char, int> decodeCharReturn4(Iter& source, uint8
   }
 }
 
-template<class Iter> std::tuple<Char, int> decodeChar(Iter& source) {
+template<class Iter>
+std::tuple<Char, int> decodeChar(Iter& source) {
   if (!source.valid()) {
     return {REPLACEMENT_CHARACTER, 0};
   } else {
@@ -224,9 +229,13 @@ struct DecodeCharTest {
 };
 
 int main() {
-  auto counter = DecodeCharTest{}.test();
+  auto startPoint{test.ticks()};
+  auto counter{DecodeCharTest{}.test()};
+  auto time{test.since(startPoint)};
+
   std::cout << counter.validCount << std::endl;
   std::cout << 1112064 << std::endl;
   std::cout << counter.iterationCount << std::endl;
   std::cout << int64_t(256) + int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) * int64_t(256) << std::endl;
+  test.store("table", time);
 }

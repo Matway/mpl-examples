@@ -43,7 +43,7 @@ Examples of code written in MPL/C++/Python
 
 # Speed of examples
 
-Running time, in seconds, as measured on Linux with `AMD EPYC 7643, 2396 MHz`
+Running time, as measured on Linux with `AMD EPYC 7643, 2396 MHz`
 
 | Example name   | MPL    | C++    | Python
 | -------------- | ------ | ------ | ------

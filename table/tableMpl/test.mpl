@@ -2,6 +2,10 @@
 "algorithm" use
 "control"   use
 
+"ticks" use
+
+"common" use
+
 Char: [{
   codepoint: Int32;
 }];
@@ -141,11 +145,13 @@ testDecodeChar: [
 ];
 
 {} {} {} [
+  startPoint: ticks;
   counter: testDecodeChar;
+  time: startPoint since;
+
   (
-    counter.validCount LF
-    1112064 LF
-    counter.iterationCount LF
-    256i64 256i64 sqr + 256i64 dup sqr * + 256i64 sqr sqr + LF
+    counter.validCount     LF 1112064 LF
+    counter.iterationCount LF 256i64 256i64 sqr + 256i64 dup sqr * + 256i64 sqr sqr + LF
   ) printList
+  "table" time store
 ] "main" exportFunction

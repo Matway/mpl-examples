@@ -1,21 +1,14 @@
-#include <cstdint>
 #include <iostream>
 #include <vector>
 
-struct RandomLCG {
-  uint32_t seed = 0;
-  uint32_t nextSeed() {
-    seed = seed * 0x8088405 + 1;
-    return seed;
-  }
-};
+#include <common.hpp>
 
-void bubbleSort(std::vector<uint32_t>& data) {
-  for (size_t i = 0; i < data.size(); i++) {
-    for (size_t j = i; j < data.size(); j++)
-    {
+template<class T> void bubbleSort(T &data) {
+  using Size = decltype(data.size());
+  for (Size i{}; i < data.size(); ++i) {
+    for (auto j{i}; j < data.size(); ++j) {
       if (data[i] > data[j]) {
-        uint32_t tmp = data[i];
+        auto tmp{data[i]};
         data[i] = data[j];
         data[j] = tmp;
       }
@@ -24,16 +17,17 @@ void bubbleSort(std::vector<uint32_t>& data) {
 }
 
 int main() {
-  const int size = 100000;
-  std::vector<uint32_t> data(size);
+  constexpr auto size{int(1e5)};
+  std::vector<unsigned> data(size);
 
-  RandomLCG rand = RandomLCG();
+  RandomLcg rand{};
+  for (int i{}; i < size; ++i)
+    data[i] = rand.next();
 
-  for (int i = 0; i < size; ++i) {
-    data[i] = rand.nextSeed();
-  }
-
+  auto startPoint{test.ticks()};
   bubbleSort(data);
+  auto time{test.since(startPoint)};
 
-  std::cout << data[0] << " " << data[size / 2] << " " << data[size - 1] << " " << std::endl;
+  std::cout << data.front() << " " << data[size / 2] << " " << data.back() << std::endl;
+  test.store("bubbleSort", time);
 }

@@ -4,44 +4,46 @@ rmdir /s /q ".\output" 2>NUL
 mkdir output
 
 echo Compilation. Please wait...
-
-clang++ .\bubbleSort\bubbleSortCpp\test.cpp         -o output\bubbleSortCpp.exe     -D NDEBUG -O3
-clang++ .\fibonacciCycle\fibonacciCycleCpp\test.cpp -o output\fibonacciCycleCpp.exe -D NDEBUG -O3
-clang++ .\fibonacciRec\fibonacciRecCpp\test.cpp     -o output\fibonacciRecCpp.exe   -D NDEBUG -O3
-clang++ .\ip\ipCpp\test.cpp                         -o output\ipCpp.exe             -D NDEBUG -O3
-clang++ .\table\tableCpp\test.cpp                   -o output\tableCpp.exe          -D NDEBUG -O3
-
-mplc .\bubbleSort\bubbleSortMpl\test.mpl         -I .\sl -o output\bubbleSortMpl.ll     -ndebug
-mplc .\fibonacciCycle\fibonacciCycleMpl\test.mpl -I .\sl -o output\fibonacciCycleMpl.ll -ndebug
-mplc .\fibonacciRec\fibonacciRecMpl\test.mpl     -I .\sl -o output\fibonacciRecMpl.ll   -ndebug
-mplc .\ip\ipMpl\test.mpl                         -I .\sl -o output\ipMpl.ll             -ndebug
-mplc .\table\tableMpl\test.mpl                   -I .\sl -o output\tableMpl.ll          -ndebug
-
-clang++ .\output\bubbleSortMpl.ll     -o output\bubbleSortMpl.exe     -O3 2>NUL
-clang++ .\output\fibonacciCycleMpl.ll -o output\fibonacciCycleMpl.exe -O3 2>NUL
-clang++ .\output\fibonacciRecMpl.ll   -o output\fibonacciRecMpl.exe   -O3 2>NUL
-clang++ .\output\ipMpl.ll             -o output\ipMpl.exe             -O3 2>NUL
-clang++ .\output\tableMpl.ll          -o output\tableMpl.exe          -O3 2>NUL
-
-echo Compilation successful!
-echo:
-echo Mpl
-echo | set /p="bubbleSort:	"     & call timecmd ".\output\bubbleSortMpl.exe     >NUL"
-echo | set /p="fibonacciCycle:	" & call timecmd ".\output\fibonacciCycleMpl.exe >NUL"
-echo | set /p="fibonacciRec:	"   & call timecmd ".\output\fibonacciRecMpl.exe   >NUL"
-echo | set /p="ip:		"           & call timecmd ".\output\ipMpl.exe             >NUL"
-echo | set /p="table:		"         & call timecmd ".\output\tableMpl.exe          >NUL"
-echo:
 echo C++
-echo | set /p="bubbleSort:	"     & call timecmd ".\output\bubbleSortCpp.exe     >NUL"
-echo | set /p="fibonacciCycle:	" & call timecmd ".\output\fibonacciCycleCpp.exe >NUL"
-echo | set /p="fibonacciRec:	"   & call timecmd ".\output\fibonacciRecCpp.exe   >NUL"
-echo | set /p="ip:		"           & call timecmd ".\output\ipCpp.exe             >NUL"
-echo | set /p="table:		"         & call timecmd ".\output\tableCpp.exe          >NUL"
+mplc .\MPL\common.mpl -ndebug -begin_func startUp -end_func tearDown -o output\common.ll -I .\sl -I .\MPL -I .\MPL\windows
+clang .\bubbleSort\bubbleSortCpp\test.cpp         .\output\common.ll -o output\bubbleSortCpp.exe     -I .\Cpp -Wno-override-module -std=c++20 -D NDEBUG -O3 -Wall
+clang .\fibonacciCycle\fibonacciCycleCpp\test.cpp .\output\common.ll -o output\fibonacciCycleCpp.exe -I .\Cpp -Wno-override-module -std=c++20 -D NDEBUG -O3 -Wall
+clang .\fibonacciRec\fibonacciRecCpp\test.cpp     .\output\common.ll -o output\fibonacciRecCpp.exe   -I .\Cpp -Wno-override-module -std=c++20 -D NDEBUG -O3 -Wall
+clang .\ip\ipCpp\test.cpp                         .\output\common.ll -o output\ipCpp.exe             -I .\Cpp -Wno-override-module -std=c++20 -D NDEBUG -O3 -Wall
+clang .\table\tableCpp\test.cpp                   .\output\common.ll -o output\tableCpp.exe          -I .\Cpp -Wno-override-module -std=c++20 -D NDEBUG -O3 -Wall
+echo mplc
+mplc .\bubbleSort\bubbleSortMpl\test.mpl         -I .\sl -I .\MPL -I .\MPL\windows -o output\bubbleSortMpl.ll     -ndebug
+mplc .\fibonacciCycle\fibonacciCycleMpl\test.mpl -I .\sl -I .\MPL -I .\MPL\windows -o output\fibonacciCycleMpl.ll -ndebug
+mplc .\fibonacciRec\fibonacciRecMpl\test.mpl     -I .\sl -I .\MPL -I .\MPL\windows -o output\fibonacciRecMpl.ll   -ndebug
+mplc .\ip\ipMpl\test.mpl                         -I .\sl -I .\MPL -I .\MPL\windows -o output\ipMpl.ll             -ndebug
+mplc .\table\tableMpl\test.mpl                   -I .\sl -I .\MPL -I .\MPL\windows -o output\tableMpl.ll          -ndebug
+echo clang\link
+clang .\output\bubbleSortMpl.ll     -o output\bubbleSortMpl.exe     -Wno-override-module -O3
+clang .\output\fibonacciCycleMpl.ll -o output\fibonacciCycleMpl.exe -Wno-override-module -O3
+clang .\output\fibonacciRecMpl.ll   -o output\fibonacciRecMpl.exe   -Wno-override-module -O3
+clang .\output\ipMpl.ll             -o output\ipMpl.exe             -Wno-override-module -O3
+clang .\output\tableMpl.ll          -o output\tableMpl.exe          -Wno-override-module -O3
+
 echo:
-echo Python
-echo | set /p="bubbleSort:	"     & call timecmd "python .\bubbleSort\bubbleSortPython\test.py         -OO >NUL"
-echo | set /p="fibonacciCycle:	" & call timecmd "python .\fibonacciCycle\fibonacciCyclePython\test.py -OO >NUL"
-echo | set /p="fibonacciRec:	"   & call timecmd "python .\fibonacciRec\fibonacciRecPython\test.py     -OO >NUL"
-echo | set /p="ip:		"           & call timecmd "python .\ip\ipPython\test.py                         -OO >NUL"
-echo | set /p="table:		"         & call timecmd "python .\table\tablePython\test.py                   -OO >NUL"
+echo Testing. Please wait...
+echo:
+echo MPL:
+.\output\bubbleSortMpl.exe     >NUL
+.\output\fibonacciCycleMpl.exe >NUL
+.\output\fibonacciRecMpl.exe   >NUL
+.\output\ipMpl.exe             >NUL
+.\output\tableMpl.exe          >NUL
+echo:
+echo C++:
+.\output\bubbleSortCpp.exe     >NUL
+.\output\fibonacciCycleCpp.exe >NUL
+.\output\fibonacciRecCpp.exe   >NUL
+.\output\ipCpp.exe             >NUL
+.\output\tableCpp.exe          >NUL
+echo:
+echo Python:
+echo | set /p="bubbleSort	"     & call timecmd "python .\bubbleSort\bubbleSortPython\test.py         -OO >NUL"
+echo | set /p="fibonacciCycle	" & call timecmd "python .\fibonacciCycle\fibonacciCyclePython\test.py -OO >NUL"
+echo | set /p="fibonacciRec	"   & call timecmd "python .\fibonacciRec\fibonacciRecPython\test.py     -OO >NUL"
+echo | set /p="ip		"           & call timecmd "python .\ip\ipPython\test.py                         -OO >NUL"
+echo | set /p="table		"         & call timecmd "python .\table\tablePython\test.py                   -OO >NUL"
