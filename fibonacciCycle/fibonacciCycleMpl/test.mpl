@@ -6,17 +6,16 @@
 "common" use
 
 fibonacci: [
-  n:;
-  n 2 < [n new] [
-    result: 1;
+  result: 0;
+  last:   1;
 
-    acc: 0;
-    n 1 - [
-      result new [acc + !result] keep new !acc
-    ] times
+  [
+    result new
+    last result + !result
+    !last
+  ] times
 
-    result
-  ] if
+  result
 ];
 
 {} {} {} [

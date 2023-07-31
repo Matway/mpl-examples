@@ -1,15 +1,7 @@
 def fibonacci(n):
-  if n < 2:
-    return n
-
-  result = 1
-
-  acc = 0
-  for i in range(n - 1):
-    tmp = result
-    result += acc
-    acc = tmp
-
+  result = 0;
+  last = 1;
+  for _ in range(n): (result, last) = (last + result, result)
   return result
 
 def main():

@@ -14,16 +14,18 @@ ns: [Nat64 same] [{
   less:  [.nanosecondCount nanosecondCount <];
   equal: [.nanosecondCount nanosecondCount =];
 
-  add: [Duration same] [a: .nanosecondCount;
+  add: [
+    a: .nanosecondCount;
     result: a nanosecondCount + ns;
     [result.nanosecondCount a < ~] "[Duration.add], overflow" assert
     @result
-  ] pfunc;
+  ];
 
-  substract: [Duration same] [a: .nanosecondCount;
+  substract: [
+    a: .nanosecondCount;
     [a nanosecondCount < ~] "[Duration.substract], invalid argument value" assert
     a nanosecondCount - ns
-  ] pfunc;
+  ];
 }] pfunc;
 
 nanosecondCount: [.nanosecondCount new];
@@ -49,57 +51,36 @@ toWeeks:        [Duration same] [nanosecondCount Real64 cast 1n64 w  nanosecondC
 +: [Duration same] [.add]       pfunc;
 -: [Duration same] [.substract] pfunc;
 
-toString: [Duration same] [() format] pfunc;
-
-# FIXME: Make it simple.
-# FIXME: Make fast.
-format: [a: b:;; @b isCombined () @b same or [@a Duration same] &&] [a: b:;;
-  stable?: @b "stable?" has [@b.stable?] [FALSE] if;
-
-  extentNanosecondCount: a nanosecondCount;
+toString: [Duration same] [
+  extentNanosecondCount: nanosecondCount;
   first?: TRUE;
 
-  padding: [
-    {
-      level: new;
-      size:  [level new];
-      at:    [drop "0"];
-    } assembleString
-  ];
-
   go: [
-    n: stable? [alignment:;] [] uif;
+    n:;
     count: extentNanosecondCount n /;
     extentNanosecondCount count n * - !extentNanosecondCount
 
-    stable? [suffix "w" = [""] [" "] if] [first? [""] [" "] if] uif
-
-    resultNumber: count toString;
-
-    stable? [alignment resultNumber.size - padding] when
-
-    @resultNumber
+    first? ~ [" "] [""] if
+    count toString
 
     FALSE !first?
   ];
 
-  extentNanosecondCount 0n64 = [stable? ["00000w 0d 00h 00m 00s 000ms 000us 000ns"] ["0ns"] if toString] [
+  extentNanosecondCount 0n64 = ["0ns" toString] [
     (
       (
-        [[w ] "w"  5]
-        [[d ] "d"  1]
-        [[h ] "h"  2]
-        [[m ] "m"  2]
-        [[s ] "s"  2]
-        [[ms] "ms" 3]
-        [[us] "us" 3]
-        [[ns] "ns" 3]
+        [[w ] "w"]
+        [[d ] "d"]
+        [[h ] "h"]
+        [[m ] "m"]
+        [[s ] "s"]
+        [[ms] "ms"]
+        [[us] "us"]
+        [[ns] "ns"]
       ) [
-        unit: suffix: alignment: call;;;
+        unit: suffix: call;;
         unitNanosecondCount: 1n64 unit nanosecondCount;
-        extentNanosecondCount unitNanosecondCount < ~ [unitNanosecondCount stable? [alignment] when go suffix] [
-          stable? [suffix "w" = [""] [" "] if alignment padding String suffix] ["" String ""] if
-        ] if
+        extentNanosecondCount unitNanosecondCount < ~ [unitNanosecondCount go suffix] ["" String ""] if
       ] each
     ) assembleString
   ] if

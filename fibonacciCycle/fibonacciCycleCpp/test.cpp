@@ -3,16 +3,14 @@
 #include <common.hpp>
 
 int fibonacci(int n) {
-  if (n < 2)
-    return n;
+  int result{};
+  int last{1};
 
-  int result{1};
-
-  int acc{};
-  for (int _{}; _ < n - 1; ++_) {
-    int tmp{result};
-    result += acc;
-    acc = tmp;
+  while(0 < n) {
+    --n;
+    int temp{result};
+    result += last;
+    last = temp;
   }
 
   return result;
