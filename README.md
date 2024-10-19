@@ -46,8 +46,8 @@ Examples of code written in MPL/C++/Python
 Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0`. Results in seconds:
 
 ```
-| Example name   | MPL           | C++    | Python
-| -------------- | --------------| ------ | ------
+| Example name   | MPL           | C++   | Python
+| -------------- | --------------| ----- | ------
 | bubbleSort     | 1.17          |  9.55 |    223
 | fibonacciCycle | 0.000'000'028 |  1.23 |    220
 | fibonacciRec   | 0.000'000'076 | 10.48 |    382

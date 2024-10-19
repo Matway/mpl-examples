@@ -19,7 +19,7 @@
 } Int32 {convention: cdecl; variadic: TRUE;} "fprintf" importFunction
 
 stderrWrite: [makeStringView TRUE] [
-  source: makeStringVeiw;
+  source: makeStringView;
   STDERR: [2n32];
   count: source addTerminator (.chars.data) STDERR __acrt_iob_func "%s\00" fprintf;
   error: String;
