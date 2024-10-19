@@ -20,10 +20,14 @@
 
 stderrWrite: [makeStringView TRUE] [
   source: makeStringView;
-  STDERR: [2n32];
-  count: source addTerminator (.chars.data) STDERR __acrt_iob_func "%s\00" storageAddress fprintf;
+  byteWrittenCount: 0;
   error: String;
-  count 0 < ["[fprintf] failed" @error.cat] when
 
-  count Intx cast error
+  source.size 0 > [
+    STDERR: [2n32];
+    source addTerminator (.data) "%s\00" storageAddress STDERR __acrt_iob_func fprintf !byteWrittenCount
+    byteWrittenCount 0 < ["[fprintf] failed" @error.cat] when
+  ] when
+
+  byteWrittenCount Intx cast error
 ] pfunc;
