@@ -43,7 +43,7 @@ Examples of code written in MPL/C++/Python
 
 # Running time
 
-Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0`. Results in seconds:
+Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0` and `Python 3.13.0`. Results in seconds:
 
 ```
 | Example name   | MPL           | C++   | Python
