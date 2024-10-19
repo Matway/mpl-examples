@@ -144,7 +144,7 @@ testDecodeChar: [
   {iterationCount: iterationCount new; validCount: validCount new;}
 ];
 
-{} {} {} [
+{} Int32 {} [
   startPoint: ticks;
   counter: testDecodeChar;
   time: startPoint since;
@@ -154,4 +154,6 @@ testDecodeChar: [
     counter.iterationCount LF 256i64 256i64 sqr + 256i64 dup sqr * + 256i64 sqr sqr + LF
   ) printList
   "table" time store
+
+  0
 ] "main" exportFunction

@@ -43,12 +43,14 @@ Examples of code written in MPL/C++/Python
 
 # Speed of examples
 
-Running time, as measured on Linux with `AMD EPYC 7643, 2396 MHz`
+Running time, as measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0`:
 
-| Example name   | MPL    | C++    | Python
-| -------------- | ------ | ------ | ------
-| bubbleSort     |  1.63s | 11.61s |     16m 49.13s
-| fibonacciCycle |   ~ 0s |  2.02s |     24m  7.98s
-| fibonacciRec   |   ~ 0s | 14.61s |     43m 52.52s
-| ip             |   ~ 0s |     1s |  1h 46m  8.07s
-| table          |   ~ 0s | 18.65s | 19h 30m 18.97s
+```
+| Example name   | MPL            | C++    | Python
+| -------------- | ---------------| ------ | ------
+| bubbleSort     | 1.17s          | 09.55s |    03m 43s
+| fibonacciCycle | 0.000'000'028s | 01.23s |    03m 40s
+| fibonacciRec   | 0.000'000'076s | 10.48s |    06m 22s
+| ip             | 0.000'000'059s | 00.43s |    21m 16s
+| table          | 0.000'085'534s | 06.90s | 5h 29m 00s
+```

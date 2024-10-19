@@ -23,7 +23,7 @@ bubbleSort: [
   ] times
 ];
 
-{} {} {} [
+{} Int32 {} [
   size: [1.0e5 Int32 cast];
   source: RandomLcgIter size [Nat32] headIter dynamic toArray;
 
@@ -33,4 +33,6 @@ bubbleSort: [
 
   (0 source.at " " size 2 / source.at " " size 1 - source.at LF) printList
   "bubbleSort" time store
+
+  0
 ] "main" exportFunction

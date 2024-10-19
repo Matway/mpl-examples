@@ -18,7 +18,7 @@ fibonacci: [
   result
 ];
 
-{} {} {} [
+{} Int32 {} [
   checksum: 0;
 
   startPoint: ticks;
@@ -30,4 +30,6 @@ fibonacci: [
 
   checksum print LF print
   "fibonacciCycle" time store
+
+  0
 ] "main" exportFunction

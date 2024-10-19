@@ -64,6 +64,6 @@ int main() {
   auto time{test.since(startPoint)};
 
   std::cout << result << std::endl;
-  std::cout << 9259542112527974400ll << std::endl;
+  std::cout << 9259542112527974400ull << std::endl;
   test.store("ip", time);
 }

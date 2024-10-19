@@ -11,24 +11,24 @@ struct RandomLcg {
 };
 
 using Duration  = uint64_t;
-using TimePoint = Duration;
+using Timepoint = Duration;
 
-extern "C" void startUp();                        // From MPL.
+extern "C" void startUp();                        // From MPL
 extern "C" void tearDown();                       //
 extern "C" void storeCase(void *, int, Duration); //
-extern "C" TimePoint tickCount();                 //
-extern "C" Duration sinceTimePoint(TimePoint);    //
+extern "C" Timepoint tickCount();                 //
+extern "C" Duration sinceTimepoint(Timepoint);    //
 
 struct TestSystem {
   TestSystem() { startUp(); }
   ~TestSystem() { tearDown(); }
 
-  TimePoint ticks() {
+  Timepoint ticks() {
     return tickCount();
   }
 
-  Duration since(TimePoint timePoint) {
-    return sinceTimePoint(timePoint);
+  Duration since(Timepoint Timepoint) {
+    return sinceTimepoint(Timepoint);
   }
 
   void store(std::string_view caseName, Duration caseTime) {

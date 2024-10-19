@@ -22,7 +22,7 @@ convertToInt: [
   result Nat64 cast
 ];
 
-{} {} {} [
+{} Int32 {} [
   result: 0n64;
   ip: Nat8 4 array;
   startPoint: ticks;
@@ -70,4 +70,6 @@ convertToInt: [
   result print LF print
   9259542112527974400n64 print LF print
   "ip" time store
+
+  0
 ] "main" exportFunction
