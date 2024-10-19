@@ -21,7 +21,7 @@
 stderrWrite: [makeStringView TRUE] [
   source: makeStringView;
   STDERR: [2n32];
-  count: source addTerminator (.chars.data) STDERR __acrt_iob_func "%s\00" fprintf;
+  count: source addTerminator (.chars.data) STDERR __acrt_iob_func "%s\00" storageAddress fprintf;
   error: String;
   count 0 < ["[fprintf] failed" @error.cat] when
 
