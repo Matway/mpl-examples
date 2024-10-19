@@ -7,7 +7,7 @@
 "control.when"          use
 "conventions.cdecl"     use
 
-private {
+{
   fd:    Int32;
   buf:   Natx;
   count: Natx;

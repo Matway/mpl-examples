@@ -9,11 +9,11 @@
 "control.when"          use
 "conventions.cdecl"     use
 
-private {
+{
   index: Nat32;
 } Natx {convention: cdecl;} "__acrt_iob_func" importFunction
 
-private {
+{
   format:         Natx;
   fileDescriptor: Natx;
 } Int32 {convention: cdecl; variadic: TRUE;} "fprintf" importFunction

@@ -40,7 +40,7 @@ echo C++:
 ./output/fibonacciRecCpp   > /dev/null
 ./output/ipCpp             > /dev/null
 ./output/tableCpp          > /dev/null
-echo:
+echo
 echo Python:
 echo bubbleSort     & time python3 ./bubbleSort/bubbleSortPython/test.py         -OO > /dev/null
 echo fibonacciCycle & time python3 ./fibonacciCycle/fibonacciCyclePython/test.py -OO > /dev/null
