@@ -61,6 +61,7 @@ int main() {
       }
     }
   }
+
   auto time{test.since(startPoint)};
 
   std::cout << result << std::endl;
