@@ -6,11 +6,11 @@ mkdir output
 echo Compilation. Please wait...
 echo C++
 mplc .\MPL\common.mpl -ndebug -begin_func startUp -end_func tearDown -o output\common.ll -I .\sl -I .\MPL -I .\MPL\windows
-clang .\bubbleSort\bubbleSortCpp\test.cpp         .\output\common.ll -o output\bubbleSortCpp.exe     -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall
-clang .\fibonacciCycle\fibonacciCycleCpp\test.cpp .\output\common.ll -o output\fibonacciCycleCpp.exe -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall
-clang .\fibonacciRec\fibonacciRecCpp\test.cpp     .\output\common.ll -o output\fibonacciRecCpp.exe   -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall
-clang .\ip\ipCpp\test.cpp                         .\output\common.ll -o output\ipCpp.exe             -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall
-clang .\table\tableCpp\test.cpp                   .\output\common.ll -o output\tableCpp.exe          -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall
+clang .\bubbleSort\bubbleSortCpp\test.cpp         .\output\common.ll -o output\bubbleSortCpp.exe     -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall --std=c++20
+clang .\fibonacciCycle\fibonacciCycleCpp\test.cpp .\output\common.ll -o output\fibonacciCycleCpp.exe -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall --std=c++20
+clang .\fibonacciRec\fibonacciRecCpp\test.cpp     .\output\common.ll -o output\fibonacciRecCpp.exe   -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall --std=c++20
+clang .\ip\ipCpp\test.cpp                         .\output\common.ll -o output\ipCpp.exe             -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall --std=c++20
+clang .\table\tableCpp\test.cpp                   .\output\common.ll -o output\tableCpp.exe          -I .\Cpp -Wno-override-module -D NDEBUG -O3 -march=native -Wall --std=c++20
 echo mplc
 mplc .\bubbleSort\bubbleSortMpl\test.mpl         -I .\sl -I .\MPL -I .\MPL\windows -o output\bubbleSortMpl.ll     -ndebug
 mplc .\fibonacciCycle\fibonacciCycleMpl\test.mpl -I .\sl -I .\MPL -I .\MPL\windows -o output\fibonacciCycleMpl.ll -ndebug
