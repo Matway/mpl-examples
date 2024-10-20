@@ -8,10 +8,10 @@ unsigned convertToInt(uint8_t* ip, int size) {
 
   for (int i{}; i < size; ++i) {
     switch (i) {
-      case 0: result += ip[i] * 256 * 256 * 256; break;
-      case 1: result += ip[i] * 256 * 256;       break;
-      case 2: result += ip[i] * 256;             break;
-      case 3: result += ip[i];                   break;
+      case 0: result += (unsigned)(ip[i]) * 256 * 256 * 256; break;
+      case 1: result +=            ip[i]  * 256 * 256;       break;
+      case 2: result +=            ip[i]  * 256;             break;
+      case 3: result +=            ip[i];                    break;
     }
   }
 
