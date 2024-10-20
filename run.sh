@@ -1,6 +1,6 @@
 set -e
 
-rm -f -r "./output"
+rm -f -r ./output
 mkdir output
 
 echo Building. Please wait...
@@ -37,7 +37,7 @@ echo C++:
 ./output/tableCpp          > /dev/null
 echo
 echo Python:
-echo fibonacciCycle & time python3 ./fibonacciCycle/fibonacciCyclePython/test.py -OO > /dev/null
-echo fibonacciRec   & time python3 ./fibonacciRec/fibonacciRecPython/test.py     -OO > /dev/null
-echo ip             & time python3 ./ip/ipPython/test.py                         -OO > /dev/null
-echo table          & time python3 ./table/tablePython/test.py                   -OO > /dev/null
+TIMEFORMAT='fibonacciCycle -----%Rs'; time python3 ./fibonacciCycle/fibonacciCyclePython/test.py -OO > /dev/null
+TIMEFORMAT='fibonacciRec -------%Rs'; time python3 ./fibonacciRec/fibonacciRecPython/test.py     -OO > /dev/null
+TIMEFORMAT='ip -----------------%Rs'; time python3 ./ip/ipPython/test.py                         -OO > /dev/null
+TIMEFORMAT='table --------------%Rs'; time python3 ./table/tablePython/test.py                   -OO > /dev/null
