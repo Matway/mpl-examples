@@ -48,7 +48,6 @@ Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0` an
 ```
 | Example name   | MPL           | C++   | Python
 | -------------- | --------------| ----- | ------
-| bubbleSort     | 1.17          |  9.55 |    223
 | fibonacciCycle | 0.000'000'028 |  1.23 |    220
 | fibonacciRec   | 0.000'000'076 | 10.48 |    382
 | ip             | 0.000'000'059 |  0.43 |  1'276
