@@ -1,23 +1,23 @@
 "String"  use
 "control" use
 
-fibonacciRec: [
-  recursive
-  number:;
+"ticks" use
 
-  number 1i64 > ~ [
-    number new
-  ] [
-    number 1i64 - fibonacciRec number 2i64 - fibonacciRec + 
-  ] if
+"common" use
+
+fibonacci: [
+  n:;
+  n 2 < [n new] [n 1 - fibonacci n 2 - fibonacci +] if
 ];
 
-{} {} {} [
-  result: 0i64;
+{} Int32 {} [
+  startPoint: ticks;
+  i32FibMax: [46];
+  checksum: 0n32 i32FibMax 1 + [i fibonacci Nat32 cast xor] times;
+  time: startPoint since;
 
-  45 [
-    result i Int64 cast fibonacciRec + !result
-  ] times
+  checksum print LF print
+  "fibonacciRec" time store
 
-  result print LF print
+  0
 ] "main" exportFunction

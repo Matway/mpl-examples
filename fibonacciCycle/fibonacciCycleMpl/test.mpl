@@ -1,33 +1,35 @@
 "String"  use
 "control" use
 
+"ticks" use
+
+"common" use
+
 fibonacci: [
-  number:;
+  result: 0;
+  last:   1;
 
-  number 1n64 > ~ [
-    number new
-  ] [
-    fib1: 0n64;
-    fib2: 1n64;
-    result: 1n64;
-    number Int32 cast [
-      fib2 new     !fib1
-      i Nat64 cast !fib2
-      result fib1 fib2 + + !result
-    ] times
-
+  [
     result new
-  ] if
-];
-
-{} {} {} [
-  result: 0n64;
-
-  10000000 dynamic [
-    45 [
-      result i Nat64 cast fibonacci 2n64 mod + !result
-    ] times
+    last result + !result
+    !last
   ] times
 
-  result print LF print
+  result
+];
+
+{} Int32 {} [
+  checksum: 0;
+
+  startPoint: ticks;
+  1.0e7 Int32 cast dynamic [
+    i32FibMax: [46];
+    i32FibMax 1 + [checksum i fibonacci 2 mod + !checksum] times
+  ] times
+  time: startPoint since;
+
+  checksum print LF print
+  "fibonacciCycle" time store
+
+  0
 ] "main" exportFunction

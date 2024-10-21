@@ -1,19 +1,24 @@
 #include <iostream>
+#include <limits>
 
-int fibonacciRec(unsigned int number) {
-  if (number <= 1) {
-    return number;
-  } else {
-    return fibonacciRec(number - 1) + fibonacciRec(number - 2);
-  }
+#include <common.hpp>
+
+int fibonacci(int n) {
+  if (n < 2)
+    return n;
+  else
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 int main() {
-  uint64_t result = 0;
+  unsigned checksum{};
 
-  for (int i = 0; i < 45; ++i) {
-    result += fibonacciRec(i);
-  }
+  auto startPoint{test.ticks()};
+  constexpr int i32FibMax{46};
+  for (int i{}; i < i32FibMax + 1; ++i)
+    checksum ^= unsigned(fibonacci(i));
+  auto time{test.since(startPoint)};
 
-  std::cout << result << std::endl;
+  std::cout << checksum << std::endl;
+  test.store("fibonacciRec", time);
 }
