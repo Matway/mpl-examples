@@ -1,6 +1,8 @@
 #pragma once
 
-#include <cstdint>
+#include <algorithm>
+#include <chrono>
+#include <iostream>
 #include <string_view>
 
 struct RandomLcg {
@@ -10,28 +12,29 @@ struct RandomLcg {
   }
 };
 
-using Duration  = uint64_t;
-using Timepoint = Duration;
+template<class Duration>
+void store(std::string_view caseName, Duration caseTime) {
+  auto bar{
+    [](auto text) {
+      using namespace std::string_view_literals;
 
-extern "C" void startUp();                        // From MPL
-extern "C" void tearDown();                       //
-extern "C" void storeCase(void *, int, Duration); //
-extern "C" Timepoint tickCount();                 //
-extern "C" Duration sinceTimepoint(Timepoint);    //
+      auto placeholder{"-------------------"sv};
+      auto length{std::max((int)(placeholder.length() - text.length()), 1)};
 
-struct TestSystem {
-  TestSystem() { startUp(); }
-  ~TestSystem() { tearDown(); }
+      return placeholder.substr(0, length);
+    }
+  };
 
-  Timepoint ticks() {
-    return tickCount();
-  }
+  auto indent{bar(caseName)};
 
-  Duration since(Timepoint Timepoint) {
-    return sinceTimepoint(Timepoint);
-  }
+  std::cerr << caseName << " " << indent << " " << caseTime << std::endl;
+}
 
-  void store(std::string_view caseName, Duration caseTime) {
-    storeCase((void *)caseName.data(), int(caseName.size()), caseTime);
-  }
-} test;
+auto ticks() {
+  return std::chrono::steady_clock::now();
+}
+
+template<class Timepoint>
+auto since(Timepoint point) {
+  return std::chrono::duration_cast<std::chrono::duration<double>>(ticks() - point);
+}

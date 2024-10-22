@@ -22,7 +22,7 @@ int main() {
   uint64_t result{};
   uint8_t ip[4];
 
-  auto startPoint{test.ticks()};
+  auto startPoint{ticks()};
 
   for (int i{}; i < 256; ++i) {
     ip[0] = i;
@@ -62,9 +62,9 @@ int main() {
     }
   }
 
-  auto time{test.since(startPoint)};
+  auto time{since(startPoint)};
 
   std::cout << result << std::endl;
   std::cout << 9259542112527974400ull << std::endl;
-  test.store("ip", time);
+  store("ip", time);
 }

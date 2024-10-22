@@ -13,12 +13,12 @@ int fibonacci(int n) {
 int main() {
   unsigned checksum{};
 
-  auto startPoint{test.ticks()};
+  auto startPoint{ticks()};
   constexpr int i32FibMax{46};
   for (int i{}; i < i32FibMax + 1; ++i)
     checksum ^= unsigned(fibonacci(i));
-  auto time{test.since(startPoint)};
+  auto time{since(startPoint)};
 
   std::cout << checksum << std::endl;
-  test.store("fibonacciRec", time);
+  store("fibonacciRec", time);
 }
