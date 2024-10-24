@@ -229,13 +229,13 @@ struct DecodeCharTest {
 };
 
 int main() {
-  auto startPoint{test.ticks()};
+  auto startPoint{ticks()};
   auto counter{DecodeCharTest{}.test()};
-  auto time{test.since(startPoint)};
+  auto time{since(startPoint)};
 
   std::cout << counter.validCount << std::endl;
   std::cout << 1112064 << std::endl;
   std::cout << counter.iterationCount << std::endl;
   std::cout << int64_t(256) + int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) + int64_t(256) * int64_t(256) * int64_t(256) * int64_t(256) << std::endl;
-  test.store("table", time);
+  store("table", time);
 }

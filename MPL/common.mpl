@@ -1,7 +1,5 @@
-"Array"     use
 "String"    use
 "algorithm" use
-"ascii"     use
 "control"   use
 
 "stderrWrite" use
@@ -24,35 +22,15 @@ RandomLcgIter: [{
 store: [
   name: time: toString; makeStringView;
 
-  placeholder: [
-    name:;
-    len: [19];
+  bar: [
+    text:;
+    placeholder: "-------------------" makeStringView;
+    length:      placeholder.size text.size - 1 max new;
 
-    {next: [ascii.minus Nat8 cast TRUE];} name.size len < [len name.size -] [1] if [Nat8] headIter toArray
+    placeholder length head
   ];
 
-  indent: name placeholder .span .stringView;
+  indent: name bar;
 
-  (name " " indent time LF) assembleString stderrWrite drop drop
+  (name " " indent " " time LF) assembleString stderrWrite drop drop
 ];
-
-# For C++ and so
-
-"conventions" use
-
-"ticks" use
-
-()(){convention: cdecl;} [] "startUp"  exportFunction
-()(){convention: cdecl;} [] "tearDown" exportFunction
-
-{
-  nameAddress: Natx;
-  nameLength:  Int32;
-  time:        Duration;
-} () {convention: cdecl;} [
-  time: nameSize: nameAddress:;;;
-  (nameAddress Nat8 Cref addressToReference nameSize new) toStringView time store
-] "storeCase" exportFunction
-
-(                    ) Duration {convention: cdecl;} [ticks] "tickCount"      exportFunction
-{timepoint: Duration;} Duration {convention: cdecl;} [since] "sinceTimepoint" exportFunction
