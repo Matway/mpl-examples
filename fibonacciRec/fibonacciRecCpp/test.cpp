@@ -17,8 +17,9 @@ int main() {
   constexpr int i32FibMax{46};
   for (int i{}; i < i32FibMax + 1; ++i)
     checksum ^= unsigned(fibonacci(i));
+  volatile auto placeholder{checksum}; // Preventing Clang on Windows from changing execution order
   auto time{since(startPoint)};
 
-  std::cout << checksum << std::endl;
+  std::cout << placeholder << std::endl;
   store("fibonacciRec", time);
 }
