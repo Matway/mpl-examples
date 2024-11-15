@@ -1,7 +1,7 @@
 - [Description](#description)
 - [Prerequisites](#prerequisites)
 - [Run](#run)
-- [Speed of examples](#speed-of-examples)
+- [Running time](#running-time)
 
 # Description
 
@@ -43,13 +43,13 @@ Examples of code written in MPL/C++/Python
 
 # Running time
 
-Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `LLVM 19.1.0` and `Python 3.13.0`. Results in seconds:
+Measured on `Fedora Linux 42` with `Intel Core i7-12700H` using `GCC 14.2.1`, `LLVM 19.1.0` and `Python 3.13.0`. Results in seconds:
 
 ```
-| Example name   | MPL           | C++   | Python
-| -------------- | --------------| ----- | ------
-| fibonacciCycle | 0.000'000'028 |  1.23 |    220
-| fibonacciRec   | 0.000'000'076 | 10.48 |    382
-| ip             | 0.000'000'059 |  0.43 |  1'276
-| table          | 0.000'085'534 |  6.90 | 19'740
+| Example name   | MPL           | C++/GCC | C++/LLVM | Python
+| -------------- | ------------- | ------- | -------- | ------
+| fibonacciCycle | 0.000'000'028 |    3.19 |     1.23 |    220
+| fibonacciRec   | 0.000'000'076 |    5.43 |    10.48 |    382
+| ip             | 0.000'000'059 |    0.37 |     0.43 |  1'276
+| table          | 0.000'085'534 |    2.74 |     6.90 | 19'740
 ```
